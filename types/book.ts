@@ -41,8 +41,6 @@ export interface VolumeInfo {
     previewLink: string;
     infoLink: string;
     canonicalVolumeLink: string;
-    averageRating?: number;
-    ratingsCount?: number;
 }
 
 export interface SaleInfo {

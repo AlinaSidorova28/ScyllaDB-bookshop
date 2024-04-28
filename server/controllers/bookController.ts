@@ -2,10 +2,10 @@ import { Books } from 'types/book';
 import { defaultThumbnail, HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR } from 'utils/constants';
 
 export const getBooks = async (req: any, res: any) => {
-    const { category } = req.query;
+    const { query = '*', startIndex = 0, maxResults = 40 } = req.query;
 
     try {
-        const url = `https://www.googleapis.com/books/v1/volumes?q=${category}&startIndex=0&maxResults=30&maturityRating=NOT_MATURE`;
+        const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&startIndex=${startIndex}&maxResults=${maxResults}&maturityRating=NOT_MATURE&filter=paid-ebooks`;
         const response = await fetch(url);
 
         if (response.ok) {
@@ -15,18 +15,17 @@ export const getBooks = async (req: any, res: any) => {
                 const result = data.items.map((item) => {
                     const thumbnail = item.volumeInfo.imageLinks?.thumbnail || defaultThumbnail;
 
-                    const { title, authors, averageRating, ratingsCount, description, pageCount } = item.volumeInfo;
+                    const { title, authors, description, pageCount } = item.volumeInfo;
 
                     return {
                         id: item.id,
                         title,
                         authors,
-                        averageRating,
-                        ratingsCount,
                         description,
                         pageCount,
                         thumbnail,
                         saleInfo: item.saleInfo,
+                        price: item.saleInfo?.retailPrice?.amount,
                     };
                 });
 
