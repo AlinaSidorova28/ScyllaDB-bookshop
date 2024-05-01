@@ -1,0 +1,39 @@
+.grid {
+    display: grid;
+    grid-gap: 1.5rem;
+}
+
+
+.bookCard {
+    display: grid;
+    grid-template-columns: 8.5rem auto;
+    gap: 1.5rem;
+    padding: 1rem;
+    text-align: left;
+
+    .wrapper {
+        display: grid;
+        grid-gap: 0.75rem;
+        align-content: space-between;
+    }
+
+    .image {
+        height: 13rem;
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .titleWrapper {
+        div {
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+    }
+
+    .bold {
+        font-weight: 700;
+    }
+}

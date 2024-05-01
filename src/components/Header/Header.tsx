@@ -6,7 +6,11 @@ import { useCart } from 'react-use-cart';
 
 import styles from './styles.module.css';
 
-const Navbar: React.FC = () => {
+interface HeaderProps {
+    toggleCart: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ toggleCart }) => {
     const [searchValue, setSearchValue] = useState('');
 
     const navigate = useNavigate();
@@ -38,7 +42,7 @@ const Navbar: React.FC = () => {
     useEffect(() => {
         const searchQuery = new URLSearchParams(location.search).get('query');
         setSearchValue(searchQuery || '');
-    }, []);
+    }, [location.search]);
 
     return (
         <nav className={styles.header}>
@@ -61,6 +65,7 @@ const Navbar: React.FC = () => {
                         </svg>
                     </div>
 
+                    {/*todo input from gravity ui*/}
                     <input className={styles.searchInput}
                            type="text"
                            name="search"
@@ -72,18 +77,18 @@ const Navbar: React.FC = () => {
                     </button>
                 </form>
 
-                <Link to="/cart" className={styles.cartWrapper}>
-                    <div>Cart</div>
+                <button className={styles.cartWrapper} onClick={toggleCart}>
+                    <div>My Cart</div>
                     <span className={styles.cartIconWrapper}>
                         <Icon size={20} data={ShoppingCart} className={styles.cartIcon} />
                         {totalItems > 0 && (
                             <span className={styles.itemsCount}>{totalItems}</span>
                         )}
                     </span>
-                </Link>
+                </button>
             </div>
         </nav>
     );
 };
 
-export default Navbar;
+export default Header;

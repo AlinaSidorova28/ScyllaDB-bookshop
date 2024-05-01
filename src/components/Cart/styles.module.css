@@ -1,0 +1,60 @@
+.hidden {
+    display: none;
+}
+
+.visible {
+    width: 22%;
+    position: absolute;
+    top: 5.5rem;
+    right: 0.5rem;
+    display: grid;
+    grid-gap: 1rem;
+    padding: 1rem;
+    max-height: 85vh;
+    overflow: auto;
+
+    .total {
+        text-align: left;
+
+        span {
+            font-weight: 700;
+        }
+    }
+}
+
+.cartItem {
+    padding: 0.5rem;
+    text-align: right;
+
+    .removeItem {
+        width: 1.5rem;
+        height: 1.5rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: #f2f2f2;
+        }
+    }
+}
+
+.cartItemForm {
+    display: grid;
+    grid-gap: 0.5rem;
+    text-align: left;
+
+    input[type='number'] {
+        -moz-appearance:textfield;
+    }
+
+    input[type='number']::-webkit-outer-spin-button,
+    input[type='number']::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+}
+
+.error {
+    color: var(--error-color);
+}

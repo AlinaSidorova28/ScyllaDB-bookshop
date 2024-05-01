@@ -11,46 +11,6 @@
     }
 }
 
-.bookCard {
-    display: grid;
-    grid-gap: 0.75rem;
-    align-content: space-between;
-    padding: 1rem;
-    text-align: left;
-
-    a {
-        justify-self: center;
-        height: 13rem;
-
-        img {
-            height: 100%;
-        }
-    }
-
-    .titleWrapper {
-        h4 {
-            margin: 0;
-        }
-
-        div {
-            font-size: 0.85rem;
-            font-style: italic;
-        }
-    }
-
-    .description {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 5;
-        -webkit-box-orient: vertical;
-    }
-
-    .bold {
-        font-weight: 700;
-    }
-}
-
 .button {
     background-color: var(--logo-color);
     color: var(--background-color-white);

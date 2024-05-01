@@ -1,8 +1,8 @@
 import { Books } from 'types/book';
-import { defaultThumbnail, HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR } from 'utils/constants';
+import { DEFAULT_THUMBNAIL, HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR } from 'utils/constants';
 
 export const getBooks = async (req: any, res: any) => {
-    const { query = '*', startIndex = 0, maxResults = 40 } = req.query;
+    const { query = 'nosql', startIndex = 0, maxResults = 20 } = req.query;
 
     try {
         const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&startIndex=${startIndex}&maxResults=${maxResults}&maturityRating=NOT_MATURE&filter=paid-ebooks`;
@@ -13,7 +13,7 @@ export const getBooks = async (req: any, res: any) => {
 
             if (data?.items) {
                 const result = data.items.map((item) => {
-                    const thumbnail = item.volumeInfo.imageLinks?.thumbnail || defaultThumbnail;
+                    const thumbnail = item.volumeInfo.imageLinks?.thumbnail || DEFAULT_THUMBNAIL;
 
                     const { title, authors, description, pageCount } = item.volumeInfo;
 
@@ -24,8 +24,8 @@ export const getBooks = async (req: any, res: any) => {
                         description,
                         pageCount,
                         thumbnail,
-                        saleInfo: item.saleInfo,
                         price: item.saleInfo?.retailPrice?.amount,
+                        currencyCode: item.saleInfo?.retailPrice?.currencyCode,
                     };
                 });
 
