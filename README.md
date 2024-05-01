@@ -2,9 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Environment
+The project uses Node.js v20.11.0.
+
+## Installation
+In the root directory execute command `npm install`. Go to the `/server` directory and repeat the command.
+
 ## Available Scripts
 
-In the project directory, you can run:
+In the project root directory, you can run:
 
 ### `npm run dev`
 
@@ -18,8 +24,3 @@ You will also see any lint errors in the console.
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
