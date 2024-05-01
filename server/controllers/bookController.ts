@@ -29,6 +29,7 @@ export const getBooks = async (req: any, res: any) => {
                     };
                 });
 
+                console.info(`GET: ${url}`);
                 res.json(result);
             } else {
                 console.error('Error: No books found for the given query');
