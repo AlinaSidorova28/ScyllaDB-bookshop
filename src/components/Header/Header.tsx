@@ -1,5 +1,7 @@
 import { ShoppingCart } from '@gravity-ui/icons';
 import { Icon } from '@gravity-ui/uikit';
+import Button from 'components/uiKit/Button';
+import Input from 'components/uiKit/Input';
 import React, { ChangeEventHandler, FormEventHandler, useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from 'react-use-cart';
@@ -52,29 +54,28 @@ const Header: React.FC<HeaderProps> = ({ toggleCart }) => {
 
             <div className={styles.navbarWrapper}>
                 <form onSubmit={onSubmit} ref={formRef} className={styles.form}>
-                    <div className={styles.searchIcon}>
-                        <svg aria-hidden="true"
-                             fill="none"
-                             stroke="currentColor"
-                             viewBox="0 0 24 24"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
-                    </div>
-
-                    {/*todo input from gravity ui*/}
-                    <input className={styles.searchInput}
-                           type="text"
-                           name="search"
+                    <Input name="search"
                            placeholder="Search"
+                           size="l"
+                           startContent={(
+                               <div className={styles.searchIcon}>
+                                   <svg aria-hidden="true"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                       <path strokeLinecap="round"
+                                             strokeLinejoin="round"
+                                             strokeWidth={2}
+                                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                   </svg>
+                               </div>
+                           )}
+                           endContent={
+                               <Button type="submit" className={styles.searchButton} label="Search" size="l"/>
+                           }
                            value={searchValue}
                            onChange={handleSearchChange} />
-                    <button type="submit" className={styles.searchButton}>
-                        Search
-                    </button>
                 </form>
 
                 <button className={styles.cartWrapper} onClick={toggleCart}>
