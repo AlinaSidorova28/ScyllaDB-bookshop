@@ -15,7 +15,9 @@ export const getBooks = async (req: any, res: any) => {
                 const result = data.items.map((item) => {
                     const thumbnail = item.volumeInfo.imageLinks?.thumbnail || DEFAULT_THUMBNAIL;
 
-                    const { title, authors, description, pageCount } = item.volumeInfo;
+                    const { title, authors, description, pageCount, industryIdentifiers } = item.volumeInfo;
+                    const isbn = industryIdentifiers
+                        ?.find((el) => el.type === 'ISBN_13' || el.type === 'ISBN_10');
 
                     return {
                         id: item.id,
@@ -26,6 +28,7 @@ export const getBooks = async (req: any, res: any) => {
                         thumbnail,
                         price: item.saleInfo?.retailPrice?.amount,
                         currencyCode: item.saleInfo?.retailPrice?.currencyCode,
+                        isbn: isbn?.identifier,
                     };
                 });
 

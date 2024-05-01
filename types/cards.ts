@@ -7,4 +7,5 @@ export interface CardItem {
     currencyCode: string;
     description?: string;
     authors?: string[];
+    isbn?: string;
 }
